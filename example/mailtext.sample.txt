@@ -1,0 +1,5 @@
+Hello $name
+
+I am looking for a job/internship/something, I hope I will work in $company.
+
+Thanks
