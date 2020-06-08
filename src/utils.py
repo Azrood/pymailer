@@ -11,8 +11,6 @@ from email.mime.base import MIMEBase
 from os import path
 from string import Template
 
-from secret import user_mail
-
 
 def replce(path, context):
     """
@@ -47,13 +45,16 @@ def mapping_csv(path):
                 for row in reader]
 
 
-def create_message(addr_recv, body_message, subject="", attachment=None):
+def create_message(addr_send, addr_recv,
+                   body_message, subject="", attachment=None):
     """
     Creates a message to be sent by email
 
     Args:
 
-      `addr_recv : str` the mail address of the receiver.
+      `addr_send : str` the address of the sender. From:
+
+      `addr_recv : str` the mail address of the receiver. To:
 
       `body_message : str` The text in the body of an email.
 
@@ -67,7 +68,7 @@ def create_message(addr_recv, body_message, subject="", attachment=None):
       An object containing a base64url encoded email object.
     """
     msg = MIMEMultipart()
-    msg['From'] = user_mail
+    msg['From'] = addr_send
     msg['To'] = addr_recv
     msg['Subject'] = subject
     msg.attach(MIMEText(body_message))
