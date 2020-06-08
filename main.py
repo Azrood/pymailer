@@ -21,13 +21,15 @@ def main():
             time.sleep(0.1)
             send_gmail(msg)
         else:
-            if not all((smtp, port)):
+            if not all((smtp, port)):  # noqa
 
                 smtp_server, port = select_smtp_provider(user_mail)
                 send_mail(msg, row['email'], smtp_server, port)
             else:
-                print("[!] No SMTP address found, you can't send an email with this provider !")
-                print("[!] If you know the SMTP address and port of your provider, you can add them in the file secret.py")
+                print("[!] No SMTP address found, you can't send "
+                      "an email with this provider !")
+                print("[!] If you know the SMTP address and port of your "
+                      "provider,you can add them in the file secret.py")
 
 
 if __name__ == "__main__":
