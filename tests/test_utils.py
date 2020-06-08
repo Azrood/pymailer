@@ -40,7 +40,7 @@ class TestMappingCSV(unittest.TestCase):
         with open(fp) as f:
             fieldnames = f.readline().strip().split(',')
 
-        self.assertTrue(all(field in fieldnames for field in row_context) )
+        self.assertTrue(all(field in fieldnames for field in row_context))
 
 
 class testReplace(unittest.TestCase):
