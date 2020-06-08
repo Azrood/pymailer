@@ -5,7 +5,8 @@ from src.utils import replce, mapping_csv, select_smtp_provider
 
 BASE_DIR_EXAMPLE = os.path.join(os.path.expanduser('~'),
                                 os.path.dirname(
-                                    os.path.dirname(os.path.abspath(__file__))))
+                                    os.path.dirname(
+                                        os.path.abspath(__file__))))
 
 
 class TestMappingCSV(unittest.TestCase):
@@ -40,7 +41,11 @@ class TestMappingCSV(unittest.TestCase):
         with open(fp) as f:
             fieldnames = f.readline().strip().split(',')
 
-        self.assertTrue(all(field in fieldnames for field in row_context))
+        self.assertTrue(all(field.lower() in fieldnames
+                            for field in row_context))
+
+        self.assertIn("email", fieldnames)
+        self.assertIn("email", row_context)
 
 
 class testReplace(unittest.TestCase):

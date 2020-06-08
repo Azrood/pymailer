@@ -42,7 +42,7 @@ def mapping_csv(path):
     """
     with open(path) as csvfile:
         reader = csv.DictReader(csvfile)
-        return [{k: v
+        return [{k.lower(): v
                 for k, v in row.items()}
                 for row in reader]
 
