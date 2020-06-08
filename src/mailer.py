@@ -22,6 +22,7 @@ def send_mail(message, mailto, smtp_server, port):
                      password=password)
         try:
             server.send_message(message, user_mail, mailto)
+            print(f"[*] Email sent from{user_mail} to {mailto}")
         except Exception as e:
             print(f"Something went wrong while sending the mail\n{e}")
 
