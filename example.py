@@ -10,6 +10,7 @@ for row in context:
     bodytext = replce("./example/mailtext.sample.txt", row)
 
 msg = create_message(user_mail,
+                     user_mail,
                      bodytext,
                      "sujet",
                      "./example/mailtext.sample.txt")

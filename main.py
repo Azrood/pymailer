@@ -13,7 +13,8 @@ def main():
     for row in context:
         bodytext = replce("./mailtext.txt", row)
         print(f"[*] Sending email to {*row.values(),}")
-        msg = create_message(row['email'],
+        msg = create_message(user_mail,
+                             row['email'],
                              bodytext,
                              subject="Internship")
         if re.match(r"\w+@gmail.\w+", user_mail, re.I):
