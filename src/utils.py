@@ -122,7 +122,7 @@ def select_smtp_provider(mail):
     """
     url = "https://emailsettings.firetrust.com/settings?q="
 
-    r = requests.get(f"{url}{user_mail}")
+    r = requests.get(f"{url}{mail}")
     if r.status_code == 200:
         res = r.json()
         smtp_domain = res['settings'][2]['address']
