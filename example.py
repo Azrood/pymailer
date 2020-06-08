@@ -16,4 +16,4 @@ msg = create_message(user_mail,
 print("*"*50)
 print(msg)
 
-# send_gmail(msg)
+send_gmail(msg)

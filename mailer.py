@@ -61,6 +61,8 @@ def send_gmail(message):
 
     # Call the Gmail API
     try:
-        results = service.users().messages().send(userId="me", body=message).execute()
+        message = service.users().messages().send(userId="me",
+                                                  body=message).execute()
+        print(f"[*] message sent | ID:{message['id']}")
     except Exception as e:
         print(f"Something went wrong ! \n{e}")
