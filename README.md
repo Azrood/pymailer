@@ -5,7 +5,7 @@ Python script that sends emails based on a template text from a csv file.
 
 * You need a csv file named `database.csv` with at least `email` as fieldname.
 * A text file `mailtext.txt` that will contain your template message.
-* A python file `secret.py` with your email and password as shown in [`secret_sample.py`](../blob/master/example/secret_sample.py)
+* A python file `secret.py` with your email and password as shown in [`secret_sample.py`](../master/example/secret_sample.py)
 
 **Note**: If you have a Gmail account, you don't need to provide your password in the file.
 
