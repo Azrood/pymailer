@@ -64,6 +64,6 @@ def send_gmail(message):
     try:
         message = service.users().messages().send(userId="me",
                                                   body=message).execute()
-        print(f"[*] message sent | ID:{message['id']}")
+        print(f"[*] message sent | ID:{message['id']}\n")
     except Exception as e:
         print(f"Something went wrong ! \n{e}")
