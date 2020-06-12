@@ -1,3 +1,5 @@
 name,company,email
 John,mycompany,email@mail.com
 Python,good company,mail@mail.mail
+,,another@mail.com
+Bob,,this mail@broken.com
