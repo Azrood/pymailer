@@ -7,3 +7,4 @@ token.pickle
 database.csv
 *.ods
 *.pdf
+mailtext.txt
