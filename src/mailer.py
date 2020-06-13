@@ -36,7 +36,8 @@ def send_gmail(msg):
         message : a message object containing a base64url encoded email object.
     """
     # If modifying these scopes, delete the file token.pickle.
-    SCOPES = ['https://www.googleapis.com/auth/gmail.send','https://www.googleapis.com/auth/gmail.readonly']
+    SCOPES = ['https://www.googleapis.com/auth/gmail.send',
+              'https://www.googleapis.com/auth/gmail.readonly']
     creds = None
     # The file token.pickle stores the user's access and refresh tokens, and is
     # created automatically when the authorization flow completes for the first
