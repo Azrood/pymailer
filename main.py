@@ -1,25 +1,28 @@
 import time
 import re
+import random
 
-from mailer import send_gmail, send_mail
-from utils import (mapping_csv, create_message, create_message_gmail,
-                   replce, select_smtp_provider)
+from src.mailer import send_gmail, send_mail
+from src.utils import (mapping_csv, create_message,
+                       replce, select_smtp_provider)
 from secret import port, smtp, user_mail
 
 
 def main():
-    context = mapping_csv("./database.csv")
-
+    context = mapping_csv("database.csv")
     for row in context:
-        bodytext = replce("./mailtext.txt", row)
-        print(f"[*] Sending email to {*row.values(),}")
+        bodytext = replce("./mailtext.txt", context)
+        print(f"[*] Sending email to {row['email']}")
+
         msg = create_message(user_mail,
                              row['email'],
                              bodytext,
                              subject="Internship")
-        if re.match(r"\w+@gmail.\w+", user_mail, re.I):
-            msg = create_message_gmail(msg)
-            time.sleep(0.1)
+
+        if re.match(r"^([a-zA-Z0-9_\-\.]+)@gmail\.([a-zA-Z]{2,5})$",
+                    user_mail,
+                    re.I):
+            time.sleep(random.random())
             send_gmail(msg)
         else:
             if not all((smtp, port)):  # noqa
