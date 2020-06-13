@@ -7,7 +7,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.image import MIMEImage
 from email.mime.audio import MIMEAudio
-from email.mime.base import MIMEBase
+from email.mime.application import MIMEApplication
 from os import path
 from string import Template
 
@@ -40,7 +40,7 @@ def mapping_csv(path):
     """
     with open(path) as csvfile:
         reader = csv.DictReader(csvfile)
-        return [{k.lower(): v
+        return [{k.lower(): v.strip() if "@" not in v else "".join(v.split())
                 for k, v in row.items()}
                 for row in reader]
 
@@ -71,7 +71,7 @@ def create_message(addr_send, addr_recv,
     msg['From'] = addr_send
     msg['To'] = addr_recv
     msg['Subject'] = subject
-    msg.attach(MIMEText(body_message))
+    msg.attach(MIMEText(body_message.replace('\n', '<br>'), 'html'))
     if attachment is not None:
         for file in attachment.split():
             content_type, encoding = mimetypes.guess_type(file)
@@ -82,7 +82,7 @@ def create_message(addr_send, addr_recv,
             with open(file, 'rb') as fp:
                 if main_type == 'text':
                     message_file = MIMEText(fp.read().decode(),
-                                            _subtype=sub_type)
+                                            _subtype=sub_type,)
 
                 elif main_type == 'image':
                     message_file = MIMEImage(fp.read(),
@@ -93,14 +93,13 @@ def create_message(addr_send, addr_recv,
                                              _subtype=sub_type)
 
                 else:
-                    message_file = MIMEBase(main_type, sub_type)
-                    message_file.set_payload(fp.read())
+                    message_file = MIMEApplication(fp.read(),
+                                                   _subtype=sub_type,)
 
             filename = path.basename(file)
             message_file.add_header('Content-Disposition',
                                     'attachment', filename=filename)
             msg.attach(message_file)
-
     return msg
 
 

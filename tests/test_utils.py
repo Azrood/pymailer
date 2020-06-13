@@ -24,7 +24,17 @@ class TestMappingCSV(unittest.TestCase):
                     {
                      'name': 'Python',
                      'company': 'good company',
-                     'email': 'mail@mail.mail'}
+                     'email': 'mail@mail.mail'},
+                    {
+                        'name': '',
+                        'company': '',
+                        'email': 'another@mail.com'},
+                    {
+                        'name': 'Bob',
+                        'company': '',
+                        'email': 'thismail@broken.com',
+                    }
+
                     ]
         fp = os.path.join(BASE_DIR_EXAMPLE,
                           "example/database_example.csv")

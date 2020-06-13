@@ -1,7 +1,7 @@
 
 
-from mailer import send_gmail
-from utils import replce, mapping_csv, create_message
+from src.mailer import send_gmail
+from src.utils import replce, mapping_csv, create_message
 
 from example.secret_sample import user_mail
 

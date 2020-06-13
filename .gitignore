@@ -6,3 +6,5 @@ token.pickle
 .vscode/
 database.csv
 *.ods
+*.pdf
+mailtext.txt
